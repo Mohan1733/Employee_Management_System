@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API from "../api";
 
 const ListEmployees = () => {
   const [employees, setEmployees] = useState([]);
@@ -9,7 +10,7 @@ const ListEmployees = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/employees");
+      const res = await axios.get(`${API}/employees`);
       setEmployees(res.data);
     } catch (err) {
       console.error("Error fetching employees:", err);
@@ -19,7 +20,7 @@ const ListEmployees = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Delete this employee?")) {
       try {
-        await axios.delete(`http://localhost:3000/employees/${id}`);
+        await axios.delete(`${API}/employees/${id}`);
         setMsg("Employee deleted successfully");
         fetchData();
       } catch (err) {

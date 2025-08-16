@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API from "../api";
 
 const Dashboard = () => {
   const [counts, setCounts] = useState({ departments: 0, employees: 0 });
@@ -7,7 +8,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/dashboard/counts");
+        const res = await axios.get(`${API}/dashboard/counts`);
         setCounts(res.data);
       } catch (err) {
         console.error("Error fetching counts", err);

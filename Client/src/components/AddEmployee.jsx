@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import API from "../api";
 
 const AddEmployee = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const AddEmployee = () => {
     if (id) {
       setLoading(true);
       axios
-        .get(`http://localhost:3000/employees/${id}`)
+        .get(`${API}/employees/${id}`)
         .then((res) => {
           setFormData(res.data);
           setLoading(false);
@@ -46,11 +47,11 @@ const AddEmployee = () => {
     e.preventDefault();
     try {
       if (id) {
-        await axios.put(`http://localhost:3000/employees/${id}`, formData);
+        await axios.put(`${API}/employees/${id}`, formData);
         setAlertType("success");
         setMsg("Employee updated successfully!");
       } else {
-        await axios.post("http://localhost:3000/employees", formData);
+        await axios.post(`${API}/employees`, formData);
         setAlertType("success");
         setMsg("Employee added successfully!");
         setFormData({
