@@ -13,11 +13,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({
-  origin: "https://employee-management-system-pi-tan.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // Routes
